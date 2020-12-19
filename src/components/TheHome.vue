@@ -2,21 +2,36 @@
     <TheHeader />
     <div class="grid grid-cols-2 pt-5">
         <div class="col-start-1">
-            <section class="text-green-400">Hello World</section>
+            <TheMock :isTrue="this.isTrue"/>
         </div>
-        <div class="text-green-600 col-start-2">
-            <section class="text-green-600">How You Been?</section>
+        <div class="col-start-2">
+            <TheGenerator @generateItem="setTrue"/>
         </div>
     </div>
 </template>
 
 <script>
     import TheHeader from './TheHeader'
-    
+    import TheMock from './TheMock'
+    import TheGenerator from './TheGenerator'
+
     export default {
         name: 'TheHome',
         components: {
-            TheHeader
+            TheHeader,
+            TheMock,
+            TheGenerator
+        },
+        data() {
+            return {
+                isTrue: false
+            }
+        },
+        methods: {
+            setTrue() {
+                console.log('hello')
+                this.isTrue = !this.isTrue
+            },
         }
     }
 </script>
