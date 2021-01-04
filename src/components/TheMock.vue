@@ -1,15 +1,20 @@
 <template>
-    <div class="grid grid-rows-16 grid-cols-12 h-full">
-        <div class="bg-blue-400 col-start-1 col-span-12" v-if="isTrue">
-            <section>Hello World</section>
+    <div class="h-screen w-full">
+        <div class="col-start-1 col-span-12 w-full" v-if="isTrue">
+            <MockHeader />
         </div>
 
     </div>
 </template>
 
 <script>
+    import MockHeader from './mock-Components/MockHeader'
+    
     export default {
         name: 'TheMock',
+        components: {
+            MockHeader
+        },
         props: {
             isTrue: Boolean
         },

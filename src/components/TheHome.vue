@@ -1,10 +1,10 @@
 <template>
     <TheHeader />
-    <div class="grid grid-cols-2 pt-5">
-        <div class="col-start-1">
+    <div class="grid pt-5">
+        <div class="col-start-1 col-end-3 w-full">
             <TheMock :isTrue="this.isTrue"/>
         </div>
-        <div class="col-start-2">
+        <div class="col-start-3 object-right">
             <TheGenerator @generateItem="setTrue"/>
         </div>
     </div>
