@@ -1,7 +1,7 @@
 <template>
     <div class="h-screen w-full">
-        <div class="col-start-1 col-span-12 w-full" v-if="headerChoice[0] === true">
-            <MockHeader :headerChosen="this.headerChoice[1]"/>
+        <div class="col-start-1 col-span-12 w-full" v-if="displayHeader">
+            <MockHeader :headerSettings="this.headerOptions"/>
         </div>
 
     </div>
@@ -16,7 +16,8 @@
             MockHeader
         },
         props: {
-            headerChoice: Array,
+            displayHeader: Boolean,
+            headerOptions: Object,
         },
     }
 </script>

@@ -2,10 +2,10 @@
     <TheHeader />
     <div class="relative pt-5">
         <div class=" w-9/12">
-            <TheMock :headerChoice="this.header"/>
+            <TheMock :displayHeader="this.header" :headerOptions="this.headerParams"/>
         </div>
         <div class="absolute top-0 right-0 w-3/12 pt-5 px-2">
-            <TheGenerator @header1="setHeader1True" @header2="setHeader2True" @header3="setHeader3True"/>
+            <TheGenerator @displayHeader="setHeaderTrue" @header-params='logHeaderParams'/>
         </div>
     </div>
 </template>
@@ -24,19 +24,13 @@
         },
         data() {
             return {
-                header: [false, 0]
+                header: false,
+                headerParams: {}
             }
         },
         methods: {
-            setHeader1True() {
-                if (this.header[0] === true && this.header[1] === 1) {
-                    this.header[0] = false
-                }
-                else {
-                    this.header[0] = true
-                    this.header[1] = 1
-                }
-                
+            setHeaderTrue() {
+               this.header = true
             },
             setHeader2True() {
                 if (this.header[0] === true && this.header[1] === 2) {
@@ -58,6 +52,9 @@
                 }
                 
             },
+            logHeaderParams(value) {
+                this.headerParams = value
+            }
         }
     }
 </script>
