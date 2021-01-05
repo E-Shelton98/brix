@@ -1,11 +1,9 @@
 <template>
-    <div class="flex justify-between p-3" :class="bgColor">
-        <a href="" class="brand-name">Brand Name</a>
+    <div class="flex justify-between p-3" :class="headerSettings.color">
+        <a href="" class="brand-name">{{headerSettings.brandName}}</a>
         <div class="flex w-4/6 justify-between px-2">
-            <a class="hover:underline" href="#" @click="logHeaderChosen">Link 1</a>
-            <a class="hover:underline" href="" >Link 2</a>
-            <a class="hover:underline" href="" >Link 3</a>
-            <div>
+            <li v-for="link in headerSettings.links" :key="link" class="list-none cursor-pointer hover:text-white"> {{link}} </li>
+            <div v-if="headerSettings.search">
                 <input class="px-2" type="text" placeholder="search...">
             </div>
         </div>
@@ -16,23 +14,25 @@
     export default {
         name: 'MockHeader',
         props: {
-            headerChosen: Number
+            headerSettings: Object
         },
         mounted() {
             this.$nextTick(function () {
-                if(this.headerChosen == 1) {
+                if(this.headerSettings.color == 1) {
                     this.bgColor = 'bg-gray-300'
                 }
-                else if (this.headerChosen == 2) {
+                else if (this.headerSettings.color == 2) {
                     this.bgColor = 'bg-indigo-300'
                 }
                 else {
                     this.bgColor = 'bg-green-400'
                 }
+
+                console.log(this.headerSettings.header, this.headerSettings.color, this.headerSettings.links)
             })
         },
         watch: {
-            headerChosen: function(){
+            headerSettings: function(){
                 console.log(this.headerChosen)
                 if (this.headerChosen === 1) {
                     this.bgColor = 'bg-gray-300'
