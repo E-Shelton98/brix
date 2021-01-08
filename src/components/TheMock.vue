@@ -1,7 +1,7 @@
 <template>
     <div class="h-screen w-full">
-        <div class="col-start-1 col-span-12 w-full" v-if="headerOptions.displayHeader">
-            <MockHeader :headerSettings="this.headerOptions"/>
+        <div class="col-start-1 col-span-12 w-full" v-if="headerParams.displayHeader">
+            <MockHeader :headerParams="this.headerParams"/>
         </div>
 
     </div>
@@ -16,7 +16,7 @@
             MockHeader
         },
         props: {
-            headerOptions: Object,
+            headerParams: Object,
         },
     }
 </script>
