@@ -45,9 +45,11 @@ export default {
             this.$emit('headerParams', this.headerParams)
             if(displayOption === true) {
                 this.headerParams.displayHeader = true
+                this.$store.commit('setHeaderParams', this.headerParams)
             }
             else {
                 this.headerParams.displayHeader = false
+                this.$store.commit('setHeaderParams', this.headerParams)
             }
             this.$emit('headerModal', this.headerModal)
         },
