@@ -1,7 +1,9 @@
 <template>
     <div>
         <div class="relative inline-block">
-            <button class="bg-green-300 hover:bg-green-600 p-2 rounded-lg" @click="showHeaderForm">Create/Edit Header</button>
+            <button class="bg-green-300 hover:bg-green-600 p-2 m-2 w-44 rounded-lg" @click="showHeaderForm">Create/Edit Header</button>
+
+            <button class="bg-green-300 hover:bg-green-600 p-2 m-2 w-44 rounded-lg" @click="showArticleForm">Create/Edit Article</button>
 
             <transition name="modal">
                 <div class="fixed z-0 top-0 left-0 w-full h-full opacity-60 flex items-center justify-center transition-opacity duration-300 ease-out bg-green-900" v-if="headerModal">
@@ -12,23 +14,35 @@
                     </div>
                 </div>
             </transition>
+            <transition name="modal">
+                <div class="fixed z-0 top-0 left-0 w-full h-full opacity-60 flex items-center justify-center transition-opacity duration-300 ease-out bg-green-900 overflow-y-scroll" v-if="articleModal">
+                    <div class="align-middle">
+                        <div class="w-max mx-0 my-auto px-2 py-3 bg-green-500 rounded shadow-lg transition-all duration-300 ease-out opacity-100">
+                            <GeneratorArticleForm @articleParams="setArticleParams" @articleModal="setArticleModal" />
+                        </div>
+                    </div>
+                </div>
+            </transition>
         </div>
     </div>
 </template>
 
 <script>
     import GeneratorHeaderForm from './generator_components/GeneratorHeaderForm'
+    import GeneratorArticleForm from './generator_components/GeneratorArticleForm'
     
     export default {
         name: 'TheGenerator',
         components: {
-            GeneratorHeaderForm
+            GeneratorHeaderForm,
+            GeneratorArticleForm,
         },
         data () {
             return {
-                formView: 'hidden',
-                headerParams: {},
-                headerModal: false
+                headerformView: 'hidden',
+                headerModal: false,
+                articleformView: 'hidden',
+                articleModal: false,
             }
         },
         props: {
@@ -36,16 +50,18 @@
         },
         methods: {
             showHeaderForm () {
-                this.formView = 'block'
+                this.headerformView = 'block'
                 this.headerModal = true
             },
-            setHeaderParams(value) {
-                this.headerParams = value
-                console.log(this.headerParams)
-                this.$emit('headerParams', this.headerParams)
+            showArticleForm () {
+                this.articleformView = 'block'
+                this.articleModal = true
             },
             setHeaderModal() {
                 this.headerModal = false
+            },
+            setArticleModal() {
+                this.articleModal = false
             }
         }
     }
